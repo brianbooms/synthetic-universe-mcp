@@ -128,9 +128,9 @@ function makeAction(def: EndpointDef): Action {
     },
     examples: [
       [
-        { user: "user", content: { text: def.example } },
+        { name: "user", content: { text: def.example } },
         {
-          user: "agent",
+          name: "agent",
           content: { text: `I'll fetch that (${def.title}, ${PRICE}).` },
         },
       ],
