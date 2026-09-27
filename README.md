@@ -109,3 +109,27 @@ The MCP SDK's default stdio spawn only inherits a minimal environment
 make sure your MCP host passes `HTTP_PROXY` / `HTTPS_PROXY` / `ALL_PROXY`
 through to the server process, or the hub will be unreachable.
 
+## HTTP API
+
+Prefer raw HTTP over the MCP server? All sixteen data endpoints live at `https://pay.brianbooms.com`. Unpaid call returns HTTP 402 with the payment terms; pay $0.01 USDC on Base (exact scheme) via the x402 flow and retry with the payment proof.
+
+| Endpoint | Example |
+|---|---|
+| GET /api/v1/data/weather | ?lat=30.27&lon=-97.74 |
+| GET /api/v1/data/iss-pass | ?lat=30.27&lon=-97.74 |
+| GET /api/v1/data/summarize | ?url=https://example.com |
+| GET /api/v1/data/readability | ?url=https://example.com |
+| GET /api/v1/data/fx | ?from=USD&to=EUR&amount=10 |
+| GET /api/v1/data/feed | ?url=https://example.com/rss |
+| GET /api/v1/data/geocode | ?q=Leander,TX |
+| GET /api/v1/data/time | ?tz=America/Chicago |
+| GET /api/v1/data/crypto | ?symbol=BTC |
+| GET /api/v1/data/wiki | ?topic=Austin,Texas |
+| GET /api/v1/data/dns | ?domain=example.com&type=A |
+| GET /api/v1/data/astronomy | ?lat=30.27&lon=-97.74 |
+| GET /api/v1/data/holidays | ?country=US |
+| GET /api/v1/data/country | ?code=DE |
+| GET /api/v1/data/cert | ?domain=example.com |
+| GET /api/v1/data/httpcheck | ?url=https://example.com |
+
+Paid (HTTP 200) responses return data fields at the top level — there is no `data` wrapper. See the integration quickstart at https://brianbooms.com/quickstart/ for the response format and copy-paste clients.
