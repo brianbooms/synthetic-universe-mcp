@@ -78,6 +78,14 @@ silently, ever.
 ## Pricing
 
 All six tools: **$0.01 USDC per call on Base** (10000 atomic units).
+## Framework integrations
+
+- [LangChain](./langchain) — `synthetic_universe_tools.py` exposes the six hub tools as LangChain `StructuredTool`s.
+- [CrewAI](./crewai) — `synthetic_universe_tools.py` exposes the six hub tools as CrewAI `BaseTool`s.
+- [ElizaOS](./elizaos) — TypeScript plugin (`src/index.ts`, `src/actions.ts`, `src/x402.ts`) wiring the six tools into ElizaOS with x402 payment handling.
+
+The payment round-trip was proven live 2026-09-27 against hub build V3.9.112-INFRA at $0.01 USDC/call on Base.
+
 Prices are read from the live hub's 402 challenge bodies at call time, so
 the tool result always reflects current on-chain terms. Tool descriptions
 state the price up front.
@@ -100,3 +108,4 @@ The MCP SDK's default stdio spawn only inherits a minimal environment
 (`HOME`, `PATH`, etc.). If your network needs an HTTP(S) egress proxy,
 make sure your MCP host passes `HTTP_PROXY` / `HTTPS_PROXY` / `ALL_PROXY`
 through to the server process, or the hub will be unreachable.
+
